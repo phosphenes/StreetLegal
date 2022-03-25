@@ -1,0 +1,703 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100% !important;
+}
+
+body {
+  padding: 0 !important;
+  margin: 0;
+  font-family: "Helvetica", sans-serif;
+  line-height: 1.5em;
+  display: flex;
+  flex-direction: column;
+}
+
+p, h1, h2, h3, h4, h5 {
+  line-height: 1.5em;
+  margin: 0;
+}
+p:last-child, h1:last-child, h2:last-child, h3:last-child, h4:last-child, h5:last-child {
+  margin-bottom: 0;
+}
+
+p {
+  opacity: 0.5;
+}
+
+#stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+  overflow: scroll;
+  padding: 30px;
+  background-color: black;
+}
+
+#stageScroll {
+  overflow-y: scroll;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  outline: 1px solid rgba(255, 255, 255, 0.2);
+  outline-offset: -1px;
+  box-shadow: 0 0 30px;
+}
+
+#overlay {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  display: block;
+}
+#overlay > * {
+  position: absolute;
+}
+#overlay #halo {
+  position: absolute;
+  top: 200px;
+  left: 200px;
+  width: 100px;
+  height: 100px;
+  outline: 3px dotted orange;
+  outline-offset: 3px;
+  pointer-events: none;
+}
+#overlay #haloButtonBox {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#overlay #haloButtonBox.vertical {
+  flex-direction: column;
+  width: 0;
+  height: 100%;
+}
+#overlay #haloButtonBox.vertical .buttons {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#overlay #haloButtonBox.vertical .buttons.before {
+  transform: rotate(-90deg) translateX(23px);
+}
+#overlay #haloButtonBox.vertical .buttons.after {
+  transform: rotate(90deg) translateX(23px);
+}
+#overlay #haloButtonBox .buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  transform: translateX(23px);
+}
+#overlay #haloButtonBox .buttons.before {
+  transform: translateX(-23px) rotate(180deg);
+}
+#overlay #haloButtonBox .buttons:hover .directionIndicator {
+  display: none !important;
+}
+#overlay #haloButtonBox .buttons .insertButton {
+  border-radius: 0 10px 10px 0;
+}
+#overlay #haloButtonBox .buttons > * {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#overlay #haloButtonBox .moveButton, #overlay #haloButtonBox .pasteButton {
+  width: 20px;
+  height: 20px;
+  background-color: orange;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+#overlay #haloButtonBox .moveButton:hover, #overlay #haloButtonBox .pasteButton:hover {
+  background-color: #ff6600;
+}
+#overlay #haloButtonBox .pasteButton {
+  background-color: #72bb00;
+  display: none;
+}
+#overlay #haloButtonBox .directionIndicator {
+  width: 12px;
+  height: 20px;
+  color: orange;
+  line-height: 6px;
+  font-weight: bold;
+  font-size: 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.emptyBox {
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 165, 0, 0.2);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  padding: 5px;
+}
+
+.insertButton {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: orange;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0;
+  flex-shrink: 0;
+}
+.insertButton:hover {
+  opacity: 1 !important;
+}
+
+div:hover > .insertButton {
+  opacity: 1;
+}
+
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(33, 33, 33, 0.66);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#modal .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  background-color: #fff;
+  position: relative;
+}
+#modal .content .closeButton {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+#modal #library {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#modal .libraryButton {
+  width: 60px;
+  height: 60px;
+  border-radius: 4px;
+  border: 2px solid gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  cursor: pointer;
+}
+#modal .libraryButton:hover {
+  border-color: orange;
+}
+
+#inspectors {
+  width: 100%;
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  background-color: #222;
+  height: 140px;
+  overflow: scroll;
+}
+#inspectors div {
+  flex-wrap: wrap;
+}
+
+.inspector {
+  flex-shrink: 0;
+  padding: 5px;
+}
+.inspector .label {
+  font-size: 12px;
+  color: #fff;
+  font-style: italic;
+  opacity: 0.5;
+  text-align: center;
+}
+.inspector select, .inspector input {
+  width: calc(100% - 4px);
+  margin: 2px;
+  border-radius: 4px;
+  background-color: #222222;
+  border: 1px solid #666;
+  outline: none;
+  color: #fff;
+  height: 36px;
+  padding: 0 5px;
+}
+.inspector button {
+  padding: 0;
+  margin: 2px;
+  height: 36px;
+  width: 36px;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 14px;
+  outline: none;
+}
+.inspector button:hover {
+  background-color: #888;
+}
+.inspector button.active {
+  background-color: orange;
+}
+.inspector button.rotate90 {
+  transform: rotate(90deg);
+}
+.inspector button.flipRotate90 {
+  transform: scaleX(-1) rotate(90deg);
+}
+.inspector button.fos16 {
+  font-size: 16px;
+}
+.inspector button.big {
+  width: 76px;
+  height: 76px;
+}
+.inspector button.alignButton {
+  padding-bottom: 2px;
+  font-size: 16px;
+}
+.inspector button.overflowButton {
+  width: 76px;
+}
+.inspector button:disabled {
+  opacity: 0.3 !important;
+  background-color: #666 !important;
+  cursor: default;
+}
+
+.inspectorDivider {
+  height: 100%;
+  width: 1px;
+  background-color: #444;
+  margin: 0 5px;
+  flex-shrink: 0;
+}
+
+#topbox {
+  background-color: #fff !important;
+  box-shadow: none !important;
+  min-height: 100%;
+}
+#topbox.column > .gutterBox {
+  height: 100% !important;
+}
+
+.thing {
+  background-color: green;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.box {
+  display: flex;
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.row, .row > .gutterBox {
+  flex-direction: row;
+}
+.row.left, .row > .gutterBox.left {
+  justify-content: flex-start;
+}
+.row.center, .row > .gutterBox.center {
+  justify-content: center;
+}
+.row.right, .row > .gutterBox.right {
+  justify-content: flex-end;
+}
+.row.spreadX, .row > .gutterBox.spreadX {
+  justify-content: space-between;
+}
+.row.fillX, .row > .gutterBox.fillX {
+  justify-content: space-between;
+}
+.row.fillX > *, .row > .gutterBox.fillX > * {
+  flex: 1;
+}
+.row.top, .row > .gutterBox.top {
+  align-items: flex-start;
+}
+.row.middle, .row > .gutterBox.middle {
+  align-items: center;
+}
+.row.bottom, .row > .gutterBox.bottom {
+  align-items: flex-end;
+}
+.row.spreadY, .row > .gutterBox.spreadY {
+  align-items: stretch;
+}
+.row.fillY, .row > .gutterBox.fillY {
+  align-items: stretch;
+}
+.row.fillY > *, .row > .gutterBox.fillY > * {
+  flex: 1;
+}
+.row.spacing0 > * + *, .row > .gutterBox.spacing0 > * + * {
+  margin-left: 0;
+}
+.row.spacing10 > * + *, .row > .gutterBox.spacing10 > * + * {
+  margin-left: 10px;
+}
+.row.spacing20 > * + *, .row > .gutterBox.spacing20 > * + * {
+  margin-left: 20px;
+}
+.row.spacing40 > * + *, .row > .gutterBox.spacing40 > * + * {
+  margin-left: 40px;
+}
+
+.column, .column > .gutterBox {
+  flex-direction: column;
+}
+.column.left, .column > .gutterBox.left {
+  align-items: flex-start;
+}
+.column.center, .column > .gutterBox.center {
+  align-items: center;
+}
+.column.right, .column > .gutterBox.right {
+  align-items: flex-end;
+}
+.column.spreadX, .column > .gutterBox.spreadX {
+  align-items: stretch;
+}
+.column.fillX, .column > .gutterBox.fillX {
+  align-items: stretch;
+}
+.column.fillX > *, .column > .gutterBox.fillX > * {
+  flex: 1;
+}
+.column.top, .column > .gutterBox.top {
+  justify-content: flex-start;
+}
+.column.middle, .column > .gutterBox.middle {
+  justify-content: center;
+}
+.column.bottom, .column > .gutterBox.bottom {
+  justify-content: flex-end;
+}
+.column.spreadY, .column > .gutterBox.spreadY {
+  justify-content: space-between;
+}
+.column.fillY, .column > .gutterBox.fillY {
+  justify-content: space-between;
+}
+.column.fillY > *, .column > .gutterBox.fillY > * {
+  flex: 1;
+}
+.column.spacing0 > * + *, .column > .gutterBox.spacing0 > * + * {
+  margin-top: 0;
+}
+.column.spacing10 > * + *, .column > .gutterBox.spacing10 > * + * {
+  margin-top: 10px;
+}
+.column.spacing20 > * + *, .column > .gutterBox.spacing20 > * + * {
+  margin-top: 20px;
+}
+.column.spacing40 > * + *, .column > .gutterBox.spacing40 > * + * {
+  margin-top: 40px;
+}
+
+.gutterBox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: auto;
+  flex: 1;
+}
+
+.gutter > .box {
+  width: 100%;
+  height: 100%;
+}
+
+.wrap.spacing0 > .gutterBox {
+  margin: 0;
+}
+.wrap.spacing0 > .gutterBox > .gutter {
+  padding: 0;
+}
+.wrap.spacing10 > .gutterBox {
+  margin: -5px;
+}
+.wrap.spacing10 > .gutterBox > .gutter {
+  padding: 5px;
+}
+.wrap.spacing20 > .gutterBox {
+  margin: -10px;
+}
+.wrap.spacing20 > .gutterBox > .gutter {
+  padding: 10px;
+}
+.wrap.spacing40 > .gutterBox {
+  margin: -20px;
+}
+.wrap.spacing40 > .gutterBox > .gutter {
+  padding: 20px;
+}
+
+button.styleButton {
+  border-radius: 0;
+}
+button.styleButton:hover {
+  outline: 2px solid rgba(255, 255, 255, 0.3);
+  outline-offset: 1px;
+}
+button.styleButton.active {
+  outline: 2px solid orange;
+  outline-offset: 1px;
+}
+button.styleButton.style1, button.styleButton.style1:hover, button.styleButton.style1.active {
+  background-color: transparent;
+}
+button.styleButton.style2, button.styleButton.style2:hover, button.styleButton.style2.active {
+  background-color: #fff;
+  color: #000;
+}
+button.styleButton.style3, button.styleButton.style3:hover, button.styleButton.style3.active {
+  background-color: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  color: #000;
+}
+button.styleButton.style4, button.styleButton.style4:hover, button.styleButton.style4.active {
+  background-color: #ddd;
+  color: #000;
+}
+button.styleButton.style5, button.styleButton.style5:hover, button.styleButton.style5.active {
+  background-color: #333;
+  color: #fff;
+}
+button.styleButton.style6, button.styleButton.style6:hover, button.styleButton.style6.active {
+  background-color: cornflowerblue;
+  color: #fff;
+}
+
+div.style1 {
+  background-color: transparent;
+}
+div.style2 {
+  background-color: #fff;
+  color: #000;
+}
+div.style3 {
+  background-color: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  color: #000;
+}
+div.style4 {
+  background-color: #ddd;
+  color: #000;
+}
+div.style5 {
+  background-color: #333;
+  color: #fff;
+}
+div.style6 {
+  background-color: cornflowerblue;
+  color: #fff;
+}
+
+.ofa {
+  overflow: auto;
+}
+
+.ofh {
+  overflow: hidden;
+}
+
+.ofs {
+  overflow: scroll;
+}
+
+.p0 {
+  padding: 0;
+}
+
+.p10 {
+  padding: 10px;
+}
+
+.p20 {
+  padding: 20px;
+}
+
+.p40 {
+  padding: 40px;
+}
+
+.fs {
+  flex-shrink: 0;
+}
+
+.f0 {
+  flex: 0 !important;
+}
+
+.fu {
+  flex: unset !important;
+}
+
+.f1 {
+  flex: 1;
+}
+
+.fg0 {
+  flex-grow: unset !important;
+}
+
+.ha {
+  height: auto;
+}
+
+.h40 {
+  height: 40px;
+}
+
+.h60 {
+  height: 60px;
+}
+
+.h100 {
+  height: 100px;
+}
+
+.h400 {
+  height: 400px;
+}
+
+.h50pc {
+  height: 50%;
+}
+
+.h100pc {
+  height: 100%;
+}
+
+.wa {
+  width: auto;
+}
+
+.w20pc {
+  width: 20%;
+}
+
+.w25pc {
+  width: 25%;
+}
+
+.w33pc {
+  width: 33.33333%;
+}
+
+.w50pc {
+  width: 50%;
+}
+
+.w66pc {
+  width: 66.66666%;
+}
+
+.w75pc {
+  width: 75%;
+}
+
+.w80pc {
+  width: 80%;
+}
+
+.w100pc {
+  width: 100%;
+}
+
+.w40 {
+  width: 40px;
+}
+
+.w50 {
+  width: 50px;
+}
+
+.w80 {
+  width: 80px;
+}
+
+.w100 {
+  width: 100px;
+}
+
+.w120 {
+  width: 120px;
+}
+
+.w150 {
+  width: 150px;
+}
+
+.w160 {
+  width: 160px;
+}
+
+.w200 {
+  width: 200px;
+}
+
+.w250 {
+  width: 250px;
+}
+
+.w300 {
+  width: 300px;
+}
+
+/*# sourceMappingURL=styles.css.map */
