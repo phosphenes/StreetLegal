@@ -1,0 +1,592 @@
+*
+	box-sizing: border-box
+
+html, body
+	height: 100% !important
+
+body
+	padding: 0 !important
+	margin: 0
+	font-family: 'Helvetica', sans-serif
+	line-height: 1.5em
+	display: flex
+	flex-direction: column
+
+p, h1, h2, h3, h4, h5
+	line-height: 1.5em
+	margin: 0
+
+	&:last-child
+		margin-bottom: 0
+p
+	opacity: 0.5
+
+#stage
+	position: relative
+	width: 100%
+	height: 100%
+	display: flex
+	justify-content: stretch
+	align-items: stretch
+	overflow: scroll
+	padding: 30px
+	background-color: black
+
+#stageScroll
+	overflow-y: scroll
+	background: #fff
+	width: 100%
+	height: 100%
+	outline: 1px solid rgba(255,255,255,0.2)
+	outline-offset: -1px
+	box-shadow: 0 0 30px
+
+#overlay
+	position: absolute
+	z-index: 1
+	top: 0
+	left: 0
+	width: 0
+	height: 0
+	display: block
+	& > *
+		position: absolute
+
+	#halo
+		position: absolute
+		top: 200px
+		left: 200px
+		width: 100px
+		height: 100px
+		outline: 3px dotted orange
+		outline-offset: 3px
+		pointer-events: none
+
+	#haloButtonBox
+		position: absolute
+		width: 100%
+		height: 0
+		display: flex
+		justify-content: space-between
+		align-items: center
+
+		&.vertical
+			flex-direction: column
+			width: 0
+			height: 100%
+			.buttons
+				flex-direction: column
+				justify-content: center
+				align-items: center
+				&.before
+					transform: rotate(-90deg) translateX(23px)
+				&.after
+					transform: rotate(90deg) translateX(23px)
+
+		.buttons
+			display: flex
+			justify-content: space-between
+			align-items: center
+			width: 20px
+			height: 20px
+			transform: translateX(23px)
+			&.before
+				transform: translateX(-23px) rotate(180deg)
+			&:hover
+				.directionIndicator
+					display: none !important
+			.insertButton
+				border-radius: 0 10px 10px 0
+			& > *
+				position: absolute
+				top: 50%
+				left: 50%
+				transform: translate(-50%, -50%)
+
+		.moveButton, .pasteButton
+			width: 20px
+			height: 20px
+			background-color: orange
+			color: #ffffff
+			display: flex
+			justify-content: center
+			align-items: center
+			cursor: pointer
+			flex-shrink: 0
+			&:hover
+				background-color: #ff6600
+
+		.pasteButton
+			background-color: #72bb00
+			display: none
+
+		.directionIndicator
+			width: 12px
+			height: 20px
+			color: orange
+			line-height: 6px
+			font-weight: bold
+			font-size: 30px
+			display: flex
+			justify-content: flex-end
+			align-items: center
+			flex-shrink: 0
+			overflow: hidden
+
+.emptyBox
+	height: 100%
+	width: 100%
+	background: rgba(255, 165, 0, 0.2)
+	justify-content: center
+	align-items: center
+	display: flex
+	flex-shrink: 0
+	padding: 5px
+
+.insertButton
+	width: 20px
+	height: 20px
+	border-radius: 50%
+	background-color: orange
+	color: #fff
+	display: flex
+	justify-content: center
+	align-items: center
+	cursor: pointer
+	opacity: 0
+	flex-shrink: 0
+	&:hover
+		opacity: 1 !important
+
+div:hover > .insertButton
+	opacity: 1
+
+#modal
+	position: fixed
+	top: 0
+	left: 0
+	z-index: 10
+	width: 100vw
+	height: 100vh
+	background-color: rgba(33,33,33,0.66)
+	display: flex
+	justify-content: center
+	align-items: center
+
+	.content
+		display: flex
+		justify-content: center
+		align-items: center
+		padding: 30px
+		background-color: #fff
+		position: relative
+
+		.closeButton
+			width: 20px
+			height: 20px
+			display: flex
+			justify-content: center
+			align-items: center
+			cursor: pointer
+			position: absolute
+			top: 5px
+			right: 5px
+
+	#library
+		display: flex
+		justify-content: center
+		align-items: center
+
+	.libraryButton
+		width: 60px
+		height: 60px
+		border-radius: 4px
+		border: 2px solid gray
+		display: flex
+		justify-content: center
+		align-items: center
+		margin: 5px
+		cursor: pointer
+		&:hover
+			border-color: orange
+
+#inspectors
+	width: 100%
+	padding: 0 10px
+	display: flex
+	justify-content: center
+	align-items: stretch
+	background-color: #222
+	height: 140px
+	overflow: scroll
+	div
+		flex-wrap: wrap
+
+.inspector
+	flex-shrink: 0
+	padding: 5px
+
+	.label
+		font-size: 12px
+		color: #fff
+		font-style: italic
+		opacity: 0.5
+		text-align: center
+
+	select, input
+		width: calc(100% - 4px)
+		margin: 2px
+		border-radius: 4px
+		background-color: #222222
+		border: 1px solid #666
+		outline: none
+		color: #fff
+		height: 36px
+		padding: 0 5px
+
+	button
+		padding: 0
+		margin: 2px
+		height: 36px
+		width: 36px
+		background-color: #444
+		color: #fff
+		border: none
+		border-radius: 2px
+		cursor: pointer
+		font-size: 14px
+		outline: none
+		&:hover
+			background-color: #888
+		&.active
+			background-color: orange
+		&.rotate90
+			transform: rotate(90deg)
+		&.flipRotate90
+			transform: scaleX(-1) rotate(90deg)
+		&.fos16
+			font-size: 16px
+		&.big
+			width: 76px
+			height: 76px
+		&.alignButton
+			padding-bottom: 2px
+			font-size: 16px
+		&.overflowButton
+			width: 76px
+		&:disabled
+			opacity: 0.3 !important
+			background-color: #666 !important
+			cursor: default
+
+.inspectorDivider
+	height: 100%
+	width: 1px
+	background-color: #444
+	margin: 0 5px
+	flex-shrink: 0
+
+#topbox
+	background-color: #fff !important
+	box-shadow: none !important
+	min-height: 100%
+	&.column > .gutterBox
+		height: 100% !important
+
+.thing
+	background-color: green
+	display: flex
+	flex-shrink: 0
+
+.box
+	display: flex
+	border-radius: 0
+	background-color: rgba(0,0,0, 0.05)
+
+.row, .row > .gutterBox
+	flex-direction: row
+	&.left
+		justify-content: flex-start
+	&.center
+		justify-content: center
+	&.right
+		justify-content: flex-end
+	&.spreadX
+		justify-content: space-between
+	&.fillX
+		justify-content: space-between
+		& > *
+			flex: 1
+	&.top
+		align-items: flex-start
+	&.middle
+		align-items: center
+	&.bottom
+		align-items: flex-end
+	&.spreadY
+		align-items: stretch
+	&.fillY
+		align-items: stretch
+		& > *
+			flex: 1
+	&.spacing0 > * + *
+		margin-left: 0
+	&.spacing10 > * + *
+		margin-left: 10px
+	&.spacing20 > * + *
+		margin-left: 20px
+	&.spacing40 > * + *
+		margin-left: 40px
+
+.column, .column > .gutterBox
+	flex-direction: column
+	&.left
+		align-items: flex-start
+	&.center
+		align-items: center
+	&.right
+		align-items: flex-end
+	&.spreadX
+		align-items: stretch
+	&.fillX
+		align-items: stretch
+		& > *
+			flex: 1
+	&.top
+		justify-content: flex-start
+	&.middle
+		justify-content: center
+	&.bottom
+		justify-content: flex-end
+	&.spreadY
+		justify-content: space-between
+	&.fillY
+		justify-content: space-between
+		& > *
+			flex: 1
+	&.spacing0 > * + *
+		margin-top: 0
+	&.spacing10 > * + *
+		margin-top: 10px
+	&.spacing20 > * + *
+		margin-top: 20px
+	&.spacing40 > * + *
+		margin-top: 40px
+
+.gutterBox
+	display: flex
+	flex-direction: row
+	flex-wrap: wrap
+	width: auto
+	flex: 1
+
+.gutter
+	& > .box
+		width: 100%
+		height: 100%
+
+.wrap
+	//&.row
+	//	height: auto
+	//	width: 100%
+	//	&.left > .gutterBox
+	//		justify-content: flex-start
+	//	&.center > .gutterBox
+	//		justify-content: center
+	//	&.right > .gutterBox
+	//		justify-content: flex-end
+	//	&.spreadX > .gutterBox
+	//		justify-content: space-between
+	//	&.fillX > .gutterBox
+	//		justify-content: space-between
+	//		& > *
+	//			flex: 1
+		//&.top > .gutterBox
+		//	align-items: flex-start
+		//&.middle > .gutterBox
+		//	align-items: center
+		//&.bottom > .gutterBox
+		//	align-items: flex-end
+		//&.spreadY > .gutterBox
+		//	align-items: stretch
+		//&.fillY > .gutterBox
+		//	align-items: stretch
+		//	& > *
+		//		flex: 1
+
+	//&.column
+	//	height: 100%
+	//	&.left > .gutterBox
+	//		align-items: flex-start
+	//	&.center > .gutterBox
+	//		align-items: center
+	//	&.right > .gutterBox
+	//		align-items: flex-end
+	//	&.spreadX > .gutterBox
+	//		align-items: stretch
+	//	&.fillX > .gutterBox
+	//		align-items: stretch
+	//		& > *
+	//			flex: 1
+	//	&.top > .gutterBox
+	//		justify-content: flex-start
+	//	&.middle > .gutterBox
+	//		justify-content: center
+	//	&.bottom > .gutterBox
+	//		justify-content: flex-end
+	//	&.spreadY > .gutterBox
+	//		justify-content: space-between
+	//	&.fillY > .gutterBox
+	//		justify-content: space-between
+	//		& > *
+	//			flex: 1
+	&.spacing0 > .gutterBox
+		margin: 0
+		& > .gutter
+			padding: 0
+	&.spacing10 > .gutterBox
+		margin: -5px
+		& > .gutter
+			padding: 5px
+	&.spacing20 > .gutterBox
+		margin: -10px
+		& > .gutter
+			padding: 10px
+	&.spacing40 > .gutterBox
+		margin: -20px
+		& > .gutter
+			padding: 20px
+
+button.styleButton
+	border-radius: 0
+	&:hover
+		outline: 2px solid rgba(255,255,255,0.3)
+		outline-offset: 1px
+	&.active
+		outline: 2px solid orange
+		outline-offset: 1px
+	&.style1, &.style1:hover, &.style1.active
+		background-color: transparent
+	&.style2, &.style2:hover, &.style2.active
+		background-color: #fff
+		color: #000
+	&.style3, &.style3:hover, &.style3.active
+		background-color: #fff
+		box-shadow: 0 0 0 1px rgba(0,0,0,0.2)
+		border-radius: 6px
+		color: #000
+	&.style4, &.style4:hover, &.style4.active
+		background-color: #ddd
+		color: #000
+	&.style5, &.style5:hover, &.style5.active
+		background-color: #333
+		color: #fff
+	&.style6, &.style6:hover, &.style6.active
+		background-color: cornflowerblue
+		color: #fff
+
+div
+	&.style1
+		background-color: transparent
+	&.style2
+		background-color: #fff
+		color: #000
+	&.style3
+		background-color: #fff
+		box-shadow: 0 0 0 1px rgba(0,0,0,0.1)
+		border-radius: 6px
+		color: #000
+	&.style4
+		background-color: #ddd
+		color: #000
+	&.style5
+		background-color: #333
+		color: #fff
+	&.style6
+		background-color: cornflowerblue
+		color: #fff
+
+
+
+
+
+
+
+
+
+.ofa
+	overflow: auto
+.ofh
+	overflow: hidden
+.ofs
+	overflow: scroll
+.p0
+	padding: 0
+.p10
+	padding: 10px
+.p20
+	padding: 20px
+.p40
+	padding: 40px
+.fs
+	flex-shrink: 0
+.f0
+	flex: 0 !important
+.fu
+	flex: unset !important
+.f1
+	flex: 1
+.fg0
+	flex-grow: unset !important
+.ha
+	height: auto
+.h40
+	height: 40px
+.h60
+	height: 60px
+.h100
+	height: 100px
+.h400
+	height: 400px
+.h50pc
+	height: 50%
+.h100pc
+	height: 100%
+.wa
+	width: auto
+.w20pc
+	width: 20%
+.w25pc
+	width: 25%
+.w33pc
+	width: 33.33333%
+.w50pc
+	width: 50%
+.w66pc
+	width: 66.66666%
+.w75pc
+	width: 75%
+.w80pc
+	width: 80%
+.w100pc
+	width: 100%
+.w40
+	width: 40px
+.w50
+	width: 50px
+.w80
+	width: 80px
+.w100
+	width: 100px
+.w120
+	width: 120px
+.w150
+	width: 150px
+.w160
+	width: 160px
+.w200
+	width: 200px
+.w250
+	width: 250px
+.w300
+	width: 300px

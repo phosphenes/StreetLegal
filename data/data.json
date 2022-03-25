@@ -1,0 +1,391 @@
+{
+	"id": "topbox",
+	"alignment": {
+		"d": "column",
+		"h": "spreadX",
+		"v": "top"
+	},
+	"padding": "p0",
+	"spacing": "spacing0",
+	"width": "auto",
+	"widthvalue": "wa",
+	"height": "auto",
+	"heightvalue": "ha",
+	"children": [
+		{
+			"id": "box20",
+			"alignment": {
+				"d": "row",
+				"h": "center",
+				"v": "middle"
+			},
+			"padding": "p0",
+			"spacing": "spacing20",
+			"width": "auto",
+			"widthvalue": "wa",
+			"height": "px",
+			"heightvalue": "h60",
+			"children": [
+				{
+					"id": "box22",
+					"alignment": {
+						"d": "row",
+						"h": "left",
+						"v": "top"
+					},
+					"padding": "p10",
+					"spacing": "spacing20",
+					"width": "auto",
+					"widthvalue": "wa",
+					"height": "auto",
+					"heightvalue": "ha",
+					"content": "button",
+					"style": "style5"
+				},
+				{
+					"id": "box1648168684000",
+					"alignment": {
+						"d": "row",
+						"h": "left",
+						"v": "top"
+					},
+					"padding": "p10",
+					"spacing": "spacing20",
+					"width": "auto",
+					"widthvalue": "wa",
+					"height": "auto",
+					"heightvalue": "ha",
+					"content": "button",
+					"style": "style6"
+				},
+				{
+					"id": "box1648168686000",
+					"alignment": {
+						"d": "row",
+						"h": "left",
+						"v": "top"
+					},
+					"padding": "p10",
+					"spacing": "spacing20",
+					"width": "auto",
+					"widthvalue": "wa",
+					"height": "auto",
+					"heightvalue": "ha",
+					"content": "button",
+					"style": "style4"
+				},
+				{
+					"id": "box1648168686600",
+					"alignment": {
+						"d": "row",
+						"h": "left",
+						"v": "top"
+					},
+					"padding": "p10",
+					"spacing": "spacing20",
+					"width": "auto",
+					"widthvalue": "wa",
+					"height": "auto",
+					"heightvalue": "ha",
+					"content": "button",
+					"style": "style3"
+				}
+			],
+			"style": "style5"
+		},
+		{
+			"id": "box21",
+			"alignment": {
+				"d": "column",
+				"h": "left",
+				"v": "top"
+			},
+			"padding": "p0",
+			"spacing": "spacing0",
+			"width": "auto",
+			"widthvalue": "h50pc",
+			"height": "auto",
+			"heightvalue": "ha",
+			"children": [
+				{
+					"id": "box1",
+					"alignment": {
+						"d": "row wrap",
+						"h": "left",
+						"v": "spreadY"
+					},
+					"padding": "p0",
+					"spacing": "spacing0",
+					"width": "auto",
+					"widthvalue": "wa",
+					"height": "auto",
+					"heightvalue": "ha",
+					"children": [
+						{
+							"id": "box11",
+							"alignment": {
+								"d": "column",
+								"h": "spreadX",
+								"v": "top"
+							},
+							"padding": "p20",
+							"spacing": "spacing20",
+							"width": "px",
+							"widthvalue": "w300",
+							"height": "auto",
+							"heightvalue": "ha",
+							"children": [
+								{
+									"id": "box4",
+									"alignment": {
+										"d": "row",
+										"h": "center",
+										"v": "middle"
+									},
+									"padding": "p20",
+									"spacing": "spacing20",
+									"width": "auto",
+									"widthvalue": "wa",
+									"height": "auto",
+									"heightvalue": "ha",
+									"content": "button",
+									"style": "style3"
+								},
+								{
+									"id": "box5",
+									"alignment": {
+										"d": "row",
+										"h": "center",
+										"v": "middle"
+									},
+									"padding": "p20",
+									"spacing": "spacing20",
+									"width": "auto",
+									"widthvalue": "wa",
+									"height": "auto",
+									"heightvalue": "ha",
+									"content": "button",
+									"style": "style3"
+								},
+								{
+									"id": "box1648168640100",
+									"alignment": {
+										"d": "column",
+										"h": "left",
+										"v": "top"
+									},
+									"padding": "p20",
+									"spacing": "spacing20",
+									"width": "fill",
+									"widthvalue": "f1",
+									"height": "auto",
+									"heightvalue": "ha",
+									"content": "<h3>Organically grow the holistic world view</h3><p>Phosfluorescently engage worldwide methodologies with web-enabled technology.</p>",
+									"style": "style3"
+								}
+							],
+							"style": "style6"
+						},
+						{
+							"id": "box6",
+							"alignment": {
+								"d": "row wrap",
+								"h": "fillX",
+								"v": "fillY"
+							},
+							"padding": "p40",
+							"spacing": "spacing40",
+							"width": "fill",
+							"widthvalue": "f1",
+							"height": "auto",
+							"heightvalue": "ha",
+							"children": [
+								{
+									"id": "box8",
+									"alignment": {
+										"d": "column",
+										"h": "left",
+										"v": "top"
+									},
+									"padding": "p0",
+									"spacing": "spacing20",
+									"width": "pc",
+									"widthvalue": "w33pc",
+									"height": "auto",
+									"heightvalue": "ha",
+									"content": "<h3>Override the digital divide</h3><p>Proactively envisioned multimedia based expertise and cross-media growth strategies. Seamlessly visualize quality intellectual capital without superior collaboration and idea-sharing. Holistically pontificate installed base portals after maintainable products.</p>",
+									"style": "style1"
+								},
+								{
+									"id": "box1648168528700",
+									"alignment": {
+										"d": "column",
+										"h": "left",
+										"v": "top"
+									},
+									"padding": "p0",
+									"spacing": "spacing20",
+									"width": "pc",
+									"widthvalue": "w33pc",
+									"height": "auto",
+									"heightvalue": "ha",
+									"content": "<h3>Ensure proactive domination</h3><p>Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>",
+									"style": "style1"
+								},
+								{
+									"id": "box9",
+									"alignment": {
+										"d": "column",
+										"h": "left",
+										"v": "top"
+									},
+									"padding": "p0",
+									"spacing": "spacing20",
+									"width": "pc",
+									"widthvalue": "w33pc",
+									"height": "auto",
+									"heightvalue": "ha",
+									"content": "<h3>Bring to the table win-win survival strategies</h3><p>Provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>",
+									"style": "style1"
+								},
+								{
+									"id": "box1648168572400",
+									"alignment": {
+										"d": "column",
+										"h": "left",
+										"v": "top"
+									},
+									"padding": "p0",
+									"spacing": "spacing20",
+									"width": "pc",
+									"widthvalue": "w33pc",
+									"height": "auto",
+									"heightvalue": "ha",
+									"content": "<h3>Capitalize on low hanging fruit</h3><p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.</p>",
+									"style": "style1"
+								},
+								{
+									"id": "box7",
+									"alignment": {
+										"d": "column",
+										"h": "left",
+										"v": "top"
+									},
+									"padding": "p0",
+									"spacing": "spacing20",
+									"width": "pc",
+									"widthvalue": "w33pc",
+									"height": "auto",
+									"heightvalue": "ha",
+									"content": "<h3>Organically grow the holistic world view</h3><p>Phosfluorescently engage worldwide methodologies with web-enabled technology.</p>",
+									"style": "style1"
+								}
+							],
+							"style": "style4"
+						}
+					],
+					"style": "style1"
+				},
+				{
+					"id": "box2",
+					"alignment": {
+						"d": "row wrap",
+						"h": "fillX",
+						"v": "fillY"
+					},
+					"padding": "p20",
+					"spacing": "spacing20",
+					"width": "auto",
+					"widthvalue": "wa",
+					"height": "auto",
+					"heightvalue": "ha",
+					"children": [
+						{
+							"id": "box12",
+							"alignment": {
+								"d": "column",
+								"h": "left",
+								"v": "top"
+							},
+							"padding": "p20",
+							"spacing": "spacing20",
+							"width": "fill",
+							"widthvalue": "f1",
+							"height": "auto",
+							"heightvalue": "ha",
+							"content": "<h3>Organically grow the holistic world view</h3><p>Phosfluorescently engage worldwide methodologies with web-enabled technology.</p>",
+							"style": "style3"
+						},
+						{
+							"id": "box13",
+							"alignment": {
+								"d": "column",
+								"h": "left",
+								"v": "top"
+							},
+							"padding": "p20",
+							"spacing": "spacing20",
+							"width": "pc",
+							"widthvalue": "w75pc",
+							"height": "auto",
+							"heightvalue": "ha",
+							"content": "<h3>Override the digital divide</h3><p>Proactively envisioned multimedia based expertise and cross-media growth strategies. Seamlessly visualize quality intellectual capital without superior collaboration and idea-sharing. Holistically pontificate installed base portals after maintainable products.</p>",
+							"style": "style3"
+						},
+						{
+							"id": "box14",
+							"alignment": {
+								"d": "column",
+								"h": "left",
+								"v": "top"
+							},
+							"padding": "p20",
+							"spacing": "spacing20",
+							"width": "pc",
+							"widthvalue": "w75pc",
+							"height": "auto",
+							"heightvalue": "ha",
+							"content": "<h3>Ensure proactive domination</h3><p>Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>",
+							"style": "style3"
+						},
+						{
+							"id": "box15",
+							"alignment": {
+								"d": "column",
+								"h": "left",
+								"v": "top"
+							},
+							"padding": "p20",
+							"spacing": "spacing20",
+							"width": "fill",
+							"widthvalue": "f1",
+							"height": "auto",
+							"heightvalue": "ha",
+							"content": "<h3>Capitalize on low hanging fruit</h3><p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.</p>",
+							"style": "style3"
+						}
+					],
+					"style": "style1"
+				},
+				{
+					"id": "box3",
+					"alignment": {
+						"d": "column",
+						"h": "left",
+						"v": "top"
+					},
+					"padding": "p20",
+					"spacing": "spacing20",
+					"width": "auto",
+					"widthvalue": "wa",
+					"height": "auto",
+					"heightvalue": "ha",
+					"content": "<h3>Bring to the table win-win survival strategies</h3><p>Provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>",
+					"style": "style5"
+				}
+			],
+			"style": "style1",
+			"overflow": "ofs"
+		}
+	]
+}
